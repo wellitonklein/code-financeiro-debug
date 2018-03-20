@@ -13,14 +13,12 @@
 use \Illuminate\Support\Facades\Gate;
 
 Route::get('/user',function (){
-    \Illuminate\Support\Facades\Auth::loginUsingId(2);
+    \Illuminate\Support\Facades\Auth::loginUsingId(1);
 });
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-Auth::routes();
 
 Route::get('/home', function (){
     return redirect()->route('admin.home');
@@ -28,8 +26,12 @@ Route::get('/home', function (){
 
 Route::group([
     'prefix' => 'admin/',
-    'middleware' => 'can:access-admin',
     'as' => 'admin.'
 ], function (){
-    Route::get('/home', 'HomeController@index')->name('home');
+
+    Auth::routes();
+
+    Route::group(['middleware' => 'can:access-admin'], function (){
+        Route::get('/home', 'HomeController@index')->name('home');
+    });
 });
