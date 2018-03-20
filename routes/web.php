@@ -10,9 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use \Illuminate\Support\Facades\Gate;
 
 Route::get('/', function () {
-    return view('welcome');
+//    \Illuminate\Support\Facades\Auth::loginUsingId(2);
+    if (Gate::allows('access-admin')){
+        return "Usuário com permissão de admin";
+    }else{
+        return "Usuário sem permissão de admin";
+    }
+//    return view('welcome');
 });
 
 Auth::routes();
