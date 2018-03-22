@@ -1,4 +1,3 @@
-alert('hello world');
 window._ = require('lodash');
 
 /**
