@@ -4,30 +4,47 @@
             <a :href="item.url">{{item.name}}</a>
         </li>
     </ul>
-    <div>
-        <!--<nav>-->
-        <nav class="deep-purple darken-1s">
-            <div class="nav-wrapper container">
-                <a href="#" class="right brand-logo">Contas <i class="material-icons">local_grocery_store</i></a>
+    <!--<div class="navbar-fixed">-->
+    <ul id="dropdown-logout">
+        <li>
+            <a :href="config.urlLogout" @click.prevent="goToLogout()">
+                Sair
+            </a>
+
+            <form id="logout-form" :action="config.urlLogout" method="POST" style="display: none;">
+                <input type="hidden" name="_token" :value="config.csrfToken">
+            </form>
+        </li>
+    </ul>
+    <nav class="deep-purple darken-1s">
+        <div class="nav-wrapper">
+            <div class="cols s12">
+                <a href="#" class="left brand-logo">Code Financeiro Admin <i class="material-icons">local_grocery_store</i></a>
                 <a href="#" data-activates="nav-mobile" class="button-collapse">
                     <i class="material-icons">menu</i>
                 </a>
-                <ul class="left hide-on-med-and-down">
+                <ul class="right hide-on-med-and-down">
                     <li v-for="menu in config.menus">
                         <a v-if="menu.dropDownID" class="dropdown-button" href="!#" :data-activates="menu.dropDownID">
                             {{menu.name}} <i class="material-icons right">arrow_drop_down</i>
                         </a>
                         <a v-else :href="menu.url">{{menu.name}}</a>
                     </li>
-                </ul>
-                <ul id="nav-mobile" class="side-nav">
-                    <li v-for="menu in config.menus">
-                        <a :href="menu.url">{{menu.name}}</a>
+                    <li>
+                        <a class="dropdown-button" href="!#" data-activates="dropdown-logout">
+                            {{config.name}} <i class="material-icons right">arrow_drop_down</i>
+                        </a>
                     </li>
                 </ul>
             </div>
-        </nav>
-    </div>
+            <ul id="nav-mobile" class="side-nav">
+                <li v-for="menu in config.menus">
+                    <a :href="menu.url">{{menu.name}}</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--</div>-->
     <!--<router-view></router-view>-->
 </template>
 
@@ -73,6 +90,11 @@
                 ],
             };
         }*/
+        methods:{
+            goToLogout(){
+                $('logout-form').submit();
+            }
+        }
     };
 </script>
 
