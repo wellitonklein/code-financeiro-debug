@@ -1,7 +1,7 @@
 <template>
-    <ul v-bind:id="o.id" class="dropdown-content" v-for="o in menusDropDown">
+    <ul :id="o.id" class="dropdown-content" v-for="o in config.menusDropDown">
         <li v-for="item in o.items">
-            <a v-link="{name: item.routeName}">{{item.name}}</a>
+            <a :href="item.url">{{item.name}}</a>
         </li>
     </ul>
     <div>
@@ -13,22 +13,22 @@
                     <i class="material-icons">menu</i>
                 </a>
                 <ul class="left hide-on-med-and-down">
-                    <li v-for="menu in menus">
-                        <a v-if="menu.dropDownID" class="dropdown-button" href="!#" v-bind:data-activates="menu.dropDownID">
+                    <li v-for="menu in config.menus">
+                        <a v-if="menu.dropDownID" class="dropdown-button" href="!#" :data-activates="menu.dropDownID">
                             {{menu.name}} <i class="material-icons right">arrow_drop_down</i>
                         </a>
-                        <a v-else v-link="{name: menu.routeName}">{{menu.name}}</a>
+                        <a v-else :href="menu.url">{{menu.name}}</a>
                     </li>
                 </ul>
                 <ul id="nav-mobile" class="side-nav">
-                    <li v-for="menu in menus">
-                        <a v-link="{name: menu.routeName}">{{menu.name}}</a>
+                    <li v-for="menu in config.menus">
+                        <a :href="menu.url">{{menu.name}}</a>
                     </li>
                 </ul>
             </div>
         </nav>
     </div>
-    <router-view></router-view>
+    <!--<router-view></router-view>-->
 </template>
 
 <script type="text/javascript">
@@ -50,7 +50,7 @@
             $(".button-collapse").sideNav();
             $('.dropdown-button').dropdown();
         },
-        data() {
+        /*data() {
             return{
                 menus: [
                     {name:"Dashboard", routeName: 'dashboard-bills'},
@@ -72,7 +72,7 @@
                     }
                 ],
             };
-        }
+        }*/
     };
 </script>
 
