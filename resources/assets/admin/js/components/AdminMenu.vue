@@ -13,7 +13,7 @@
             </form>
         </li>
     </ul>
-    <nav class="deep-purple darken-1s">
+    <nav>
         <div class="nav-wrapper">
             <div class="cols s12">
                 <a href="#" class="left brand-logo">Financeiro Admin <i class="material-icons">local_grocery_store</i></a>
