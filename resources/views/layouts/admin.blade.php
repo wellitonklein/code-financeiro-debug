@@ -22,39 +22,50 @@
 </head>
 <body>
     <div id="app">
-
-        @if (Auth::check())
-            <?php $menuConfig = [
-                    'name' => Auth::user()->name,
-                    'menus' => [
-                        ['name'=>'Dashboard','url'=>'/dashboard'],
-                        ['name'=>'Contas a Pagar','url'=>'/teste1','dropDownID'=>'teste1'],
-                        ['name'=>'Contas a Receber','url'=>'/teste2','dropDownID'=>'teste2']
-                    ],
-                    'menusDropDown' => [
-                        [
-                            'id'=>'teste1',
-                            'items'=>[
-                                ['name'=>"Listar Contas", 'url'=> 'listar'],
-                                ['name'=>"Criar Conta", 'url'=> 'criar'],
+        <header>
+            @if (Auth::check())
+                <?php $menuConfig = [
+                        'name' => Auth::user()->name,
+                        'menus' => [
+                            ['name'=>'Dashboard','url'=>'/dashboard'],
+                            ['name'=>'Contas a Pagar','url'=>'/teste1','dropDownID'=>'teste1'],
+                            ['name'=>'Contas a Receber','url'=>'/teste2','dropDownID'=>'teste2']
+                        ],
+                        'menusDropDown' => [
+                            [
+                                'id'=>'teste1',
+                                'items'=>[
+                                    ['name'=>"Listar Contas", 'url'=> 'listar'],
+                                    ['name'=>"Criar Conta", 'url'=> 'criar'],
+                                ]
+                            ],
+                            [
+                                'id'=>'teste2',
+                                'items'=>[
+                                    ['name'=>"Listar Contas", 'url'=> 'listar'],
+                                    ['name'=>"Criar Conta", 'url'=> 'criar'],
+                                ],
                             ]
                         ],
-                        [
-                            'id'=>'teste2',
-                            'items'=>[
-                                ['name'=>"Listar Contas", 'url'=> 'listar'],
-                                ['name'=>"Criar Conta", 'url'=> 'criar'],
-                            ],
-                        ]
-                    ],
-                    'urlLogout'=>env('URL_ADMIN_LOGOUT'),
-                    'csrfToken'=> csrf_token()
-                ]
-            ?>
-            <admin-menu :config="{{ json_encode($menuConfig) }}"></admin-menu>
-        @endif
+                        'urlLogout'=>env('URL_ADMIN_LOGOUT'),
+                        'csrfToken'=> csrf_token()
+                    ]
+                ?>
+                <admin-menu :config="{{ json_encode($menuConfig) }}"></admin-menu>
+            @endif
+        </header>
 
-        @yield('content')
+        <main>
+            @yield('content')
+        </main>
+
+        <footer class="page-footer">
+            <div class="footer-copyright">
+                <div class="container">
+                    @ {{ date('Y') }} <a href="https://www.freenfe.com.br" class="grey-text text-lighten-4">FreeNFe</a>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <!-- Scripts -->

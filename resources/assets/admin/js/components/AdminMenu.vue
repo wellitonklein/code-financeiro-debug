@@ -7,19 +7,16 @@
     <!--<div class="navbar-fixed">-->
     <ul id="dropdown-logout">
         <li>
-            <a :href="config.urlLogout" @click.prevent="goToLogout()">
-                Sair
-            </a>
-
+            <a :href="config.urlLogout" @click.prevent="goToLogout()">Sair</a>
             <form id="logout-form" :action="config.urlLogout" method="POST" style="display: none;">
-                <input type="hidden" name="_token" :value="config.csrfToken">
+                <input type="hidden" name="_token" :value="config.csrfToken"/>
             </form>
         </li>
     </ul>
     <nav class="deep-purple darken-1s">
         <div class="nav-wrapper">
             <div class="cols s12">
-                <a href="#" class="left brand-logo">Code Financeiro Admin <i class="material-icons">local_grocery_store</i></a>
+                <a href="#" class="left brand-logo">Financeiro Admin <i class="material-icons">local_grocery_store</i></a>
                 <a href="#" data-activates="nav-mobile" class="button-collapse">
                     <i class="material-icons">menu</i>
                 </a>
@@ -58,7 +55,7 @@
                         name: '',
                         menus: [],
                         menusDropDown: [],
-                        urlLogout: '/admin/logout'
+                        urlLogout: ''
                     }
                 }
             }
@@ -92,7 +89,7 @@
         }*/
         methods:{
             goToLogout(){
-                $('logout-form').submit();
+                $('#logout-form').submit();
             }
         }
     };
