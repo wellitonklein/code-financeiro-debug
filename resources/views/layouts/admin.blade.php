@@ -62,7 +62,9 @@
         <footer class="page-footer">
             <div class="footer-copyright">
                 <div class="container">
-                    @ {{ date('Y') }} <a href="https://www.freenfe.com.br" class="grey-text text-lighten-4">FreeNFe</a>
+                    <div class="right">
+                        @ {{ date('Y') }} <a href="https://www.freenfe.com.br" class="grey-text text-lighten-4">FreeNFe</a>
+                    </div>
                 </div>
             </div>
         </footer>

@@ -13,34 +13,36 @@
             </form>
         </li>
     </ul>
-    <nav>
-        <div class="nav-wrapper">
-            <div class="cols s12">
-                <a href="#" class="left brand-logo">Financeiro Admin <i class="material-icons">local_grocery_store</i></a>
-                <a href="#" data-activates="nav-mobile" class="button-collapse">
-                    <i class="material-icons">menu</i>
-                </a>
-                <ul class="right hide-on-med-and-down">
+    <div class="row">
+        <nav>
+            <div class="nav-wrapper">
+                <div class="col s12">
+                    <a href="#" class="left brand-logo">Financeiro Admin <i class="material-icons">local_grocery_store</i></a>
+                    <a href="#" data-activates="nav-mobile" class="button-collapse">
+                        <i class="material-icons">menu</i>
+                    </a>
+                    <ul class="right hide-on-med-and-down">
+                        <li v-for="menu in config.menus">
+                            <a v-if="menu.dropDownID" class="dropdown-button" href="!#" :data-activates="menu.dropDownID">
+                                {{menu.name}} <i class="material-icons right">arrow_drop_down</i>
+                            </a>
+                            <a v-else :href="menu.url">{{menu.name}}</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-button" href="!#" data-activates="dropdown-logout">
+                                {{config.name}} <i class="material-icons right">arrow_drop_down</i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <ul id="nav-mobile" class="side-nav">
                     <li v-for="menu in config.menus">
-                        <a v-if="menu.dropDownID" class="dropdown-button" href="!#" :data-activates="menu.dropDownID">
-                            {{menu.name}} <i class="material-icons right">arrow_drop_down</i>
-                        </a>
-                        <a v-else :href="menu.url">{{menu.name}}</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-button" href="!#" data-activates="dropdown-logout">
-                            {{config.name}} <i class="material-icons right">arrow_drop_down</i>
-                        </a>
+                        <a :href="menu.url">{{menu.name}}</a>
                     </li>
                 </ul>
             </div>
-            <ul id="nav-mobile" class="side-nav">
-                <li v-for="menu in config.menus">
-                    <a :href="menu.url">{{menu.name}}</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+        </nav>
+    </div>
     <!--</div>-->
     <!--<router-view></router-view>-->
 </template>
