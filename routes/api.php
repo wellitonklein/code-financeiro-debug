@@ -17,6 +17,4 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-Route::get('/hello',function (){
-    return "HELLO";
-});
+Route::post('access_token','Api\AuthController@accessToken');
