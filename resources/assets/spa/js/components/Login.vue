@@ -34,6 +34,8 @@
 </template>
 
 <script>
+    import {Jwt} from "../resources";
+
     export default {
         data(){
             return{
@@ -45,7 +47,9 @@
         },
         methods:{
             login(){
-
+                Jwt.accessToken(this.user.email,this.user.password).then((response)=>{
+                    console.log(response);
+                });
             }
         }
     }
