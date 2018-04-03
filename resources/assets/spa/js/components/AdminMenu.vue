@@ -66,29 +66,6 @@
             $(".button-collapse").sideNav();
             $('.dropdown-button').dropdown();
         },
-        /*data() {
-            return{
-                menus: [
-                    {name:"Dashboard", routeName: 'dashboard-bills'},
-                    {name:"Contas a Pagar", routeName: 'bill-pay.list', dropDownID: 'bill-pay'},
-                    {name:"Contas a Receber", routeName: 'bill-receive.list', dropDownID: 'bill-receive'}
-                ],
-                menusDropDown:[
-                    {
-                        id: 'bill-pay', items: [
-                            {id: 0,name:"Listar Contas", routeName: 'bill-pay.list'},
-                            {id: 1,name:"Criar Conta", routeName: 'bill-pay.create'}
-                        ]
-                    },
-                    {
-                        id: 'bill-receive', items: [
-                            {id: 0,name:"Listar Contas", routeName: 'bill-receive.list'},
-                            {id: 1,name:"Criar Conta", routeName: 'bill-receive.create'}
-                        ]
-                    }
-                ],
-            };
-        }*/
         methods:{
             goToLogout(){
                 $('#logout-form').submit();

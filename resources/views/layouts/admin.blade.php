@@ -21,56 +21,56 @@
     </script>
 </head>
 <body>
-    <div id="app">
-        <header>
-            @if (Auth::check())
-                <?php $menuConfig = [
-                        'name' => Auth::user()->name,
-                        'menus' => [
-                            ['name'=>'Dashboard','url'=>'/dashboard'],
-                            ['name'=>'Contas a Pagar','url'=>'/teste1','dropDownID'=>'teste1'],
-                            ['name'=>'Contas a Receber','url'=>'/teste2','dropDownID'=>'teste2']
+<div id="app">
+    <header>
+        @if (Auth::check())
+            <?php $menuConfig = [
+                'name' => Auth::user()->name,
+                'menus' => [
+                    ['name'=>'Dashboard','url'=>'/dashboard'],
+                    ['name'=>'Contas a Pagar','url'=>'/teste1','dropDownID'=>'teste1'],
+                    ['name'=>'Contas a Receber','url'=>'/teste2','dropDownID'=>'teste2']
+                ],
+                'menusDropDown' => [
+                    [
+                        'id'=>'teste1',
+                        'items'=>[
+                            ['name'=>"Listar Contas", 'url'=> 'listar'],
+                            ['name'=>"Criar Conta", 'url'=> 'criar'],
+                        ]
+                    ],
+                    [
+                        'id'=>'teste2',
+                        'items'=>[
+                            ['name'=>"Listar Contas", 'url'=> 'listar'],
+                            ['name'=>"Criar Conta", 'url'=> 'criar'],
                         ],
-                        'menusDropDown' => [
-                            [
-                                'id'=>'teste1',
-                                'items'=>[
-                                    ['name'=>"Listar Contas", 'url'=> 'listar'],
-                                    ['name'=>"Criar Conta", 'url'=> 'criar'],
-                                ]
-                            ],
-                            [
-                                'id'=>'teste2',
-                                'items'=>[
-                                    ['name'=>"Listar Contas", 'url'=> 'listar'],
-                                    ['name'=>"Criar Conta", 'url'=> 'criar'],
-                                ],
-                            ]
-                        ],
-                        'urlLogout'=>env('URL_ADMIN_LOGOUT'),
-                        'csrfToken'=> csrf_token()
                     ]
-                ?>
-                <admin-menu :config="{{ json_encode($menuConfig) }}"></admin-menu>
-            @endif
-        </header>
+                ],
+                'urlLogout'=>env('URL_ADMIN_LOGOUT'),
+                'csrfToken'=> csrf_token()
+            ]
+            ?>
+            <admin-menu :config="{{ json_encode($menuConfig) }}"></admin-menu>
+        @endif
+    </header>
 
-        <main>
-            @yield('content')
-        </main>
+    <main>
+        @yield('content')
+    </main>
 
-        <footer class="page-footer">
-            <div class="footer-copyright">
-                <div class="container">
-                    <div class="right">
-                        @ {{ date('Y') }} <a href="http://0.0.0.0:9000/home" class="grey-text text-lighten-4">Code Financeiro</a>
-                    </div>
+    <footer class="page-footer">
+        <div class="footer-copyright">
+            <div class="container">
+                <div class="right">
+                    @ {{ date('Y') }} <a href="http://0.0.0.0:9000/home" class="grey-text text-lighten-4">Code Financeiro</a>
                 </div>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
+</div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('build/admin.bundle.js') }}"></script>
+<!-- Scripts -->
+<script src="{{ asset('build/admin.bundle.js') }}"></script>
 </body>
 </html>

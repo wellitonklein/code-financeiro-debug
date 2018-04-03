@@ -10377,14 +10377,4 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   }
 }
 
-#app {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-main {
-  flex: 1 0 auto;
-}
-
 /*# sourceMappingURL=admin.css.map */
