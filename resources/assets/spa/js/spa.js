@@ -1,3 +1,6 @@
+import LoginComponent from './components/Login.vue';
+import AppComponent from './components/App.vue';
+
 require('materialize-css');
 
 // window._ = require('lodash');
@@ -40,13 +43,18 @@ window.Vue = require('vue');
 
 Vue.component('app', require('./components/App.vue'));
 
-const app = new Vue({
-    el: 'body'
+let VueRouter = require('vue-router');
+const router = new VueRouter();
+
+router.map({
+   '/login':{
+       name: 'auth.login',
+       component: LoginComponent
+   }
 });
 
-// import Echo from "laravel-echo"
-
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: 'your-pusher-key'
-// });
+router.start({
+    components: {
+        'app': AppComponent
+    }
+},'body');
