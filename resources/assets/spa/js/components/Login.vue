@@ -34,7 +34,7 @@
 </template>
 
 <script>
-    import {Jwt} from "../resources";
+    import {Jwt} from "../services/resources";
 
     export default {
         data(){
