@@ -13,18 +13,22 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['middleware'=>'cors'],function (){
-    Route::post('access_token','Api\AuthController@accessToken');
-    Route::post('refresh_token','Api\AuthController@refreshToken');
-    Route::post('logout','Api\AuthController@logout')->middleware('auth:api');
+Route::group(['middleware'=>'cors','as' => 'api.'],function (){
+    Route::post('access_token','Api\AuthController@accessToken')->name('access_token');
+    Route::post('refresh_token','Api\AuthController@refreshToken')->name('refresh_token');
 
-    Route::get('/hello', function (Request $request) {
-        return response()->json(['message'=>'hello']);
-    })->middleware('auth:api');
+    Route::group(['middleware'=> 'auth:api'],function (){
+        Route::post('logout','Api\AuthController@logout')
+            ->middleware('auth:api')->name('logout');
 
-    Route::get('/user', function (Request $request){
+        Route::get('/hello', function (Request $request) {
+            return response()->json(['message'=>'hello']);
+        })->middleware('auth:api')->name('hello');
+
+        Route::get('/user', function (Request $request){
 //        $user = Auth::guard('api')->user();
-        $user = $request->user('api');
-        return $user;
-    })->middleware('auth:api');
+            $user = $request->user('api');
+            return $user;
+        })->middleware('auth:api')->name('user');
+    });
 });
