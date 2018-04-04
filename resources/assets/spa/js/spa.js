@@ -9,5 +9,3 @@ require('./router');
 
 // LocalStorage.set('nome','Fokushima');
 // LocalStorage.remove('nome');
-
-console.log(LocalStorage.setObject('user',{name:'Fokushima',id:2}));
