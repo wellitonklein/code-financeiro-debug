@@ -13,7 +13,7 @@ return [
     */
    
     'supportsCredentials' => false,
-    'allowedOrigins' => ['http://0.0.0.0:3000'],
+    'allowedOrigins' => ['http://0.0.0.0:3000','chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop'],
     'allowedOriginsPatterns' => [],
     'allowedHeaders' => ['*'],
     'allowedMethods' => ['*'],
