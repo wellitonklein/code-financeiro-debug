@@ -5,7 +5,7 @@ import {User} from '../services/resources';
 const TOKEN = 'token';
 const USER = 'user';
 
-const afterLogin = (response)=>{
+const afterLogin = (response) => {
     User.get()
         .then((response)=>LocalStorage.setObject(USER,response.data));
 };
@@ -13,10 +13,20 @@ const afterLogin = (response)=>{
 export default {
     login(email, password){
         return Jwt.accessToken(email,password).then((response)=>{
-            afterLogin(response);
             LocalStorage.set('token',response.data.token);
+            afterLogin(response);
             return response;
         });
+    },
+    logout(){
+        let afterLogout = ()=>{
+            LocalStorage.remove(TOKEN);
+            LocalStorage.remove(USER);
+        };
+
+        return Jwt.logout()
+            .then(afterLogout())
+            .catch(afterLogout());
     },
     getAuthorizationHeader(){
         return `Bearer ${LocalStorage.get(TOKEN)}`;
