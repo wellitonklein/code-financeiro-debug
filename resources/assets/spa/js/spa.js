@@ -7,6 +7,7 @@ require('vue-resource');
 
 Vue.http.options.root = appConfig.api_url;
 
+require('./services/interceptors');
 require('./router');
 
 // LocalStorage.set('nome','Fokushima');
