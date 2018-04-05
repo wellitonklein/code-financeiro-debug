@@ -33,5 +33,8 @@ export default {
     },
     user(){
         return LocalStorage.getObject(USER);
+    },
+    check(){
+        return LocalStorage.getObject(TOKEN) ? true : false;
     }
 }

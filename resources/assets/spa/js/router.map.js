@@ -3,16 +3,24 @@ import LogoutComponent from './components/Logout.vue';
 import DashboardComponent from './components/Dashboard.vue';
 
 export default {
+    '/':{
+        name: 'dashboard',
+        component: DashboardComponent,
+        auth: true
+    },
     '/login':{
         name: 'auth.login',
-        component: LoginComponent
+        component: LoginComponent,
+        auth: false
     },
     '/logout':{
         name: 'auth.logout',
-        component: LogoutComponent
+        component: LogoutComponent,
+        auth: true
     },
     '/dashboard':{
         name: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        auth: true
     },
 }
