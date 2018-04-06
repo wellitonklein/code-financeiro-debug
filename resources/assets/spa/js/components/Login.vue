@@ -61,10 +61,10 @@
         methods:{
             login(){
                 Auth.login(this.user.email,this.user.password)
-                    .then(()=>this.$router.go({name:'dashboard'}))
+                    .then(()=> this.$router.go({name:'dashboard'}))
                     .catch((responseError)=>{
                         switch (responseError.status){
-                            case 401:
+                            case 400:
                                 this.error.message = responseError.data.message;
                                 break;
                             default:

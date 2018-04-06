@@ -59,7 +59,7 @@ gulp.task('webpack-dev-server',() => {
             aggregateTimeout: 300
         },
         publicPath: config.output.publicPath,
-        noInfo: false,
+        noInfo: true,
         stats: {colors: true}
     }).listen(8080, "localhost", () => {
         console.log("Bundling project...");

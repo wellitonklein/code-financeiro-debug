@@ -13,7 +13,7 @@ const afterLogin = (response) => {
 export default {
     login(email, password){
         return Jwt.accessToken(email,password).then((response)=>{
-            LocalStorage.set('token',response.data.token);
+            LocalStorage.set(TOKEN,response.data.token);
             afterLogin(response);
             return response;
         });
@@ -28,6 +28,12 @@ export default {
             .then(afterLogout())
             .catch(afterLogout());
     },
+    refreshToken(){
+        return Jwt.refreshToken().then((response)=>{
+            LocalStorage.set(TOKEN,response.data.token);
+            return response;
+        });
+    },
     getAuthorizationHeader(){
         return `Bearer ${LocalStorage.get(TOKEN)}`;
     },
@@ -35,6 +41,6 @@ export default {
         return LocalStorage.getObject(USER);
     },
     check(){
-        return LocalStorage.getObject(TOKEN) ? true : false;
+        return LocalStorage.get(TOKEN) ? true : false;
     }
 }
