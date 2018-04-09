@@ -5,11 +5,11 @@ namespace CodeFin\Repositories;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
- * Interface MyModelRepository.
+ * Interface BankRepository.
  *
  * @package namespace CodeFin\Repositories;
  */
-interface MyModelRepository extends RepositoryInterface
+interface BankRepository extends RepositoryInterface
 {
     //
 }

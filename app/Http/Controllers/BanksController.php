@@ -7,35 +7,35 @@ use Illuminate\Http\Request;
 use CodeFin\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use CodeFin\Http\Requests\MyModelCreateRequest;
-use CodeFin\Http\Requests\MyModelUpdateRequest;
-use CodeFin\Repositories\MyModelRepository;
-use CodeFin\Validators\MyModelValidator;
+use CodeFin\Http\Requests\BankCreateRequest;
+use CodeFin\Http\Requests\BankUpdateRequest;
+use CodeFin\Repositories\BankRepository;
+use CodeFin\Validators\BankValidator;
 
 /**
- * Class MyModelsController.
+ * Class BanksController.
  *
  * @package namespace CodeFin\Http\Controllers;
  */
-class MyModelsController extends Controller
+class BanksController extends Controller
 {
     /**
-     * @var MyModelRepository
+     * @var BankRepository
      */
     protected $repository;
 
     /**
-     * @var MyModelValidator
+     * @var BankValidator
      */
     protected $validator;
 
     /**
-     * MyModelsController constructor.
+     * BanksController constructor.
      *
-     * @param MyModelRepository $repository
-     * @param MyModelValidator $validator
+     * @param BankRepository $repository
+     * @param BankValidator $validator
      */
-    public function __construct(MyModelRepository $repository, MyModelValidator $validator)
+    public function __construct(BankRepository $repository, BankValidator $validator)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
@@ -49,38 +49,38 @@ class MyModelsController extends Controller
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $myModels = $this->repository->all();
+        $banks = $this->repository->all();
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $myModels,
+                'data' => $banks,
             ]);
         }
 
-        return view('myModels.index', compact('myModels'));
+        return view('banks.index', compact('banks'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  MyModelCreateRequest $request
+     * @param  BankCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(MyModelCreateRequest $request)
+    public function store(BankCreateRequest $request)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $myModel = $this->repository->create($request->all());
+            $bank = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'MyModel created.',
-                'data'    => $myModel->toArray(),
+                'message' => 'Bank created.',
+                'data'    => $bank->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -110,16 +110,16 @@ class MyModelsController extends Controller
      */
     public function show($id)
     {
-        $myModel = $this->repository->find($id);
+        $bank = $this->repository->find($id);
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $myModel,
+                'data' => $bank,
             ]);
         }
 
-        return view('myModels.show', compact('myModel'));
+        return view('banks.show', compact('bank'));
     }
 
     /**
@@ -131,32 +131,32 @@ class MyModelsController extends Controller
      */
     public function edit($id)
     {
-        $myModel = $this->repository->find($id);
+        $bank = $this->repository->find($id);
 
-        return view('myModels.edit', compact('myModel'));
+        return view('banks.edit', compact('bank'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  MyModelUpdateRequest $request
+     * @param  BankUpdateRequest $request
      * @param  string            $id
      *
      * @return Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(MyModelUpdateRequest $request, $id)
+    public function update(BankUpdateRequest $request, $id)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $myModel = $this->repository->update($request->all(), $id);
+            $bank = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'MyModel updated.',
-                'data'    => $myModel->toArray(),
+                'message' => 'Bank updated.',
+                'data'    => $bank->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -194,11 +194,11 @@ class MyModelsController extends Controller
         if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'MyModel deleted.',
+                'message' => 'Bank deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'MyModel deleted.');
+        return redirect()->back()->with('message', 'Bank deleted.');
     }
 }

@@ -7,11 +7,11 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
- * Class MyModel.
+ * Class Bank.
  *
  * @package namespace CodeFin\Models;
  */
-class MyModel extends Model implements Transformable
+class Bank extends Model implements Transformable
 {
     use TransformableTrait;
 
@@ -20,6 +20,9 @@ class MyModel extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name',
+        'logo'
+    ];
 
 }
