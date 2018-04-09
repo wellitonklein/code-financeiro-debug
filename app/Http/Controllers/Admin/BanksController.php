@@ -107,7 +107,7 @@ class BanksController extends Controller
     {
         $bank = $this->repository->find($id);
 
-        return view('banks.edit', compact('bank'));
+        return view('admin.banks.edit', compact('bank'));
     }
 
     /**
@@ -122,35 +122,8 @@ class BanksController extends Controller
      */
     public function update(BankUpdateRequest $request, $id)
     {
-        try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
-            $bank = $this->repository->update($request->all(), $id);
-
-            $response = [
-                'message' => 'Bank updated.',
-                'data'    => $bank->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+        $this->repository->update($request->all(), $id);
+        return redirect()->route('admin.banks.index');
     }
 
 

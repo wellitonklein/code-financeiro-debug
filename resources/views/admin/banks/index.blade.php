@@ -23,7 +23,7 @@
                             <td>{{$bank->id}}</td>
                             <td>{{$bank->name}}</td>
                             <td>
-                                Ações
+                                <a href="{{route('admin.banks.edit',['bank'=>$bank->id])}}">Editar</a>
                             </td>
                         </tr>
                     @endforeach

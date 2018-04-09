@@ -3,8 +3,11 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h4>Novo Banco</h4>
-            {!! Form::open(['route' => 'admin.banks.store']) !!}
+            <h4>Editando Banco</h4>
+            {!! Form::model($bank,[
+                'route' => ['admin.banks.update','bank'=> $bank->id],
+                'method'=> 'PUT'
+            ]) !!}
 
             @include('admin.banks._form')
 
