@@ -40,7 +40,7 @@ class BanksController extends Controller
     public function index()
     {
 //        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $banks = $this->repository->paginate();
+        $banks = $this->repository->paginate(5);
 
 //        if (request()->wantsJson()) {
 //
