@@ -63,7 +63,7 @@
             }
         },
         ready(){
-            $(".button-collapse").sideNav();
+            $('.button-collapse').sideNav();
             $('.dropdown-button').dropdown();
         },
         methods:{

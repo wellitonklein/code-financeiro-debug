@@ -5,7 +5,7 @@
         </li>
     </ul>
     <!--<div class="navbar-fixed">-->
-    <ul id="dropdown-logout">
+    <ul id="dropdown-logout" class="dropdown-content">
         <li>
             <a :href="config.urlLogout" @click.prevent="goToLogout()">Sair</a>
             <form id="logout-form" :action="config.urlLogout" method="POST" style="display: none;">
