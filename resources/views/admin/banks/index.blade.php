@@ -5,6 +5,9 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <h4>Listagem de Bancos</h4>
+                <div class="row col s12">
+                    <a href="{{route('admin.banks.create')}}" class="btn waves-effect">Novo</a>
+                </div>
                 <table class="striped responsive-table z-depth-5 table-style">
                     <thead>
                     <tr>
