@@ -136,16 +136,16 @@ class BanksController extends Controller
      */
     public function destroy($id)
     {
-        $deleted = $this->repository->delete($id);
+        $this->repository->delete($id);
 
-        if (request()->wantsJson()) {
+        /*if (request()->wantsJson()) {
 
             return response()->json([
                 'message' => 'Bank deleted.',
                 'deleted' => $deleted,
             ]);
-        }
+        }*/
 
-        return redirect()->back()->with('message', 'Bank deleted.');
+        return redirect()->route('admin.banks.index');
     }
 }

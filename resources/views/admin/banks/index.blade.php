@@ -23,7 +23,14 @@
                             <td>{{$bank->id}}</td>
                             <td>{{$bank->name}}</td>
                             <td>
-                                <a href="{{route('admin.banks.edit',['bank'=>$bank->id])}}">Editar</a>
+                                {!! Form::open(['route' => ['admin.banks.destroy', $bank->id], 'method' => 'delete']) !!}
+                                <div class='btn-group'>
+                                    <a href="{!! route('admin.banks.edit', [$bank->id]) !!}" class="waves-effect waves-teal btn-flat">
+                                        <i class="material-icons">mode_edit</i>
+                                    </a>
+                                    {!! Form::button('<i class="material-icons">delete_forever</i>', ['type' => 'submit','class'=>'waves-effect waves-teal btn-flat']) !!}
+                                </div>
+                                {!! Form::close() !!}
                             </td>
                         </tr>
                     @endforeach
