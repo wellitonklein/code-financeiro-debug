@@ -70,23 +70,23 @@
             goToLogout(){
                 $('#logout-form').submit();
             },
-            menuItemClass(menu){//ativar menus e submenus
+            menuItemClass: function (menu) {//ativar menus e submenus
                 let menuClass = ['active'];
-                if (menu.active){
+                if (menu.active) {
                     return menuClass;
                 }
-                
-                if (menu.dropDownID !== undefined){
-                    let dropdown = this.config.menusDropDown.find((element)=>{
+
+                if (menu.dropDownID !== undefined) {
+                    let dropdown = this.config.menusDropDown.find((element) => {
                         return element.id == menu.dropDownID;
                     });
-                    if (dropdown){
-                        for (let o of  dropdown.items){
-                            if (o.active){
+                    if (dropdown) {
+                        for (let o of  dropdown.items) {
+                            if (o.active) {
                                 return menuClass;
                             }
-                        } 
-                    } 
+                        }
+                    }
                 }
             }
         }

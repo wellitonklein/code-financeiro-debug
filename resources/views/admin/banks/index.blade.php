@@ -23,14 +23,21 @@
                             <td>{{$bank->id}}</td>
                             <td>{{$bank->name}}</td>
                             <td>
-                                {!! Form::open(['route' => ['admin.banks.destroy', $bank->id], 'method' => 'delete']) !!}
-                                <div class='btn-group'>
-                                    <a href="{!! route('admin.banks.edit', [$bank->id]) !!}" class="waves-effect waves-teal btn-flat">
-                                        <i class="material-icons">mode_edit</i>
-                                    </a>
-                                    {!! Form::button('<i class="material-icons">delete_forever</i>', ['type' => 'submit','class'=>'waves-effect waves-teal btn-flat']) !!}
-                                </div>
-                                {!! Form::close() !!}
+                                {{--{!! Form::open(['route' => ['admin.banks.destroy', $bank->id], 'method' => 'delete']) !!}--}}
+                                {{--<div class='btn-group'>--}}
+                                    {{--<a href="{!! route('admin.banks.edit', [$bank->id]) !!}" class="waves-effect waves-teal btn-flat">--}}
+                                        {{--<i class="material-icons">mode_edit</i>--}}
+                                    {{--</a>--}}
+                                    {{--{!! Form::button('<i class="material-icons">delete_forever</i>', ['type' => 'submit','class'=>'waves-effect waves-teal btn-flat']) !!}--}}
+                                {{--</div>--}}
+                                {{--{!! Form::close() !!}--}}
+                                <a href="{{route('admin.banks.edit',['bank'=>$bank->id])}}">Editar</a> |
+                                <delete-action action="{{route('admin.banks.destroy',['bank'=>$bank->id])}}"
+                                               action-element="link-delete-{{$bank->id}}"
+                                               csrf-token="{{csrf_token()}}">
+                                    <a id="link-delete-{{$bank->id}}"
+                                       href="{{route('admin.banks.destroy',['bank'=>$bank->id])}}">Excluir</a>
+                                </delete-action>
                             </td>
                         </tr>
                     @endforeach
