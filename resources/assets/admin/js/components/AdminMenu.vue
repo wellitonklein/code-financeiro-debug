@@ -1,6 +1,6 @@
 <template>
     <ul :id="o.id" class="dropdown-content" v-for="o in config.menusDropDown">
-        <li v-for="item in o.items">
+        <li v-for="item in o.items" :class="menuItemClass(item)">
             <a :href="item.url">{{item.name}}</a>
         </li>
     </ul>
@@ -22,7 +22,7 @@
                         <i class="material-icons">menu</i>
                     </a>
                     <ul class="right hide-on-med-and-down">
-                        <li v-for="menu in config.menus">
+                        <li v-for="menu in config.menus" :class="menuItemClass(menu)">
                             <a v-if="menu.dropDownID" class="dropdown-button" href="!#" :data-activates="menu.dropDownID">
                                 {{menu.name}} <i class="material-icons right">arrow_drop_down</i>
                             </a>
@@ -66,32 +66,28 @@
             $(".button-collapse").sideNav();
             $('.dropdown-button').dropdown();
         },
-        /*data() {
-            return{
-                menus: [
-                    {name:"Dashboard", routeName: 'dashboard-bills'},
-                    {name:"Contas a Pagar", routeName: 'bill-pay.list', dropDownID: 'bill-pay'},
-                    {name:"Contas a Receber", routeName: 'bill-receive.list', dropDownID: 'bill-receive'}
-                ],
-                menusDropDown:[
-                    {
-                        id: 'bill-pay', items: [
-                            {id: 0,name:"Listar Contas", routeName: 'bill-pay.list'},
-                            {id: 1,name:"Criar Conta", routeName: 'bill-pay.create'}
-                        ]
-                    },
-                    {
-                        id: 'bill-receive', items: [
-                            {id: 0,name:"Listar Contas", routeName: 'bill-receive.list'},
-                            {id: 1,name:"Criar Conta", routeName: 'bill-receive.create'}
-                        ]
-                    }
-                ],
-            };
-        }*/
         methods:{
             goToLogout(){
                 $('#logout-form').submit();
+            },
+            menuItemClass(menu){//ativar menus e submenus
+                let menuClass = ['active'];
+                if (menu.active){
+                    return menuClass;
+                }
+                
+                if (menu.dropDownID !== undefined){
+                    let dropdown = this.config.menusDropDown.find((element)=>{
+                        return element.id == menu.dropDownID;
+                    });
+                    if (dropdown){
+                        for (let o of  dropdown.items){
+                            if (o.active){
+                                return menuClass;
+                            }
+                        } 
+                    } 
+                }
             }
         }
     };
