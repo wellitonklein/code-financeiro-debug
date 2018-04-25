@@ -27,7 +27,7 @@
             <?php $menuConfig = [
                 'name' => Auth::user()->name,
                 'menus' => [
-                    ['name'=>'Bancos','url'=>route('admin.banks.index')]
+                    ['name'=>'Bancos','url'=>route('admin.banks.index'),'active'=>isRouteActive('admin.banks.index')]
                 ],
                 'menusDropDown' => [],
                 'urlLogout'=>env('URL_ADMIN_LOGOUT'),

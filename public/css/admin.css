@@ -5042,7 +5042,8 @@ thead {
   border-bottom: 1px solid #d0d0d0;
 }
 
-td, th {
+td,
+th {
   padding: 15px 5px;
   display: table-cell;
   text-align: left;
@@ -6961,7 +6962,7 @@ small {
 .btn-large:disabled,
 .btn-flat:disabled,
 .btn[disabled],
-[disabled].btn-large,
+.btn-large[disabled],
 .btn-floating[disabled],
 .btn-large[disabled],
 .btn-flat[disabled] {
@@ -6982,7 +6983,7 @@ small {
 .btn-large:disabled:hover,
 .btn-flat:disabled:hover,
 .btn[disabled]:hover,
-[disabled].btn-large:hover,
+.btn-large[disabled]:hover,
 .btn-floating[disabled]:hover,
 .btn-large[disabled]:hover,
 .btn-flat[disabled]:hover {
@@ -7197,7 +7198,7 @@ button.btn-floating {
 
 .btn-flat.disabled {
   background-color: transparent !important;
-  color: #b3b3b3 !important;
+  color: #b3b2b2 !important;
   cursor: default;
 }
 

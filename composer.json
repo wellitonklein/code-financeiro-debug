@@ -21,6 +21,9 @@
 	"laravel/homestead": "^6.1"
     },
     "autoload": {
+        "files":[
+            "app/helpers.php"
+        ],
         "classmap": [
             "database"
         ],
