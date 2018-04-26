@@ -10,12 +10,12 @@
         </li>
     </ul>
     <div>
-        <div class="navbar-fixed">
+        <div class="navbar">
             <nav>
                 <div class="nav-wrapper container">
                     <div class="col s12">
                         <a href="#" class="left brand-logo">Contas <i class="material-icons">local_grocery_store</i></a>
-                        <a href="#" data-activates="nav-mobile" class="button-collapse">
+                        <a href="#" data-activates="nav-mobile" class="button-collapse right">
                             <i class="material-icons">menu</i>
                         </a>
                         <ul class="right hide-on-med-and-down">
