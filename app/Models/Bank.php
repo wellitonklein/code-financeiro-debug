@@ -15,6 +15,8 @@ class Bank extends Model implements Transformable
 {
     use TransformableTrait;
 
+    const LOGOS_DIR = "banks/images";
+
     /**
      * The attributes that are mass assignable.
      *

@@ -1,5 +1,6 @@
 <?php
 
+use CodeFin\Models\Bank;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -32,6 +33,9 @@ class CreateBankLogoDefault extends Migration
      */
     public function down()
     {
-        //
+        $file_name = env("BANK_LOGO_DEFAULT");
+        $filePath = Bank::LOGOS_DIR.'/'.$file_name;
+        Storage::disk('public')->delete($filePath);
+        echo "** Imagem $file_name deletada\n";
     }
 }

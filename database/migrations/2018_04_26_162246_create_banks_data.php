@@ -1,8 +1,11 @@
 <?php
 
+use CodeFin\Models\Bank;
+use CodeFin\Repositories\BankRepository;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Storage;
 
 class CreateBanksData extends Migration
 {
@@ -14,7 +17,7 @@ class CreateBanksData extends Migration
     public function up()
     {
         /** @var \CodeFin\Repositories\BankRepository $repository */
-        $repository = app(\CodeFin\Repositories\BankRepository::class);
+        $repository = app(BankRepository::class);
         foreach ($this->getData() as $bankArray){
             $repository->create($bankArray);
         }
@@ -27,7 +30,17 @@ class CreateBanksData extends Migration
      */
     public function down()
     {
-        //
+        /** @var BankRepository $repository */
+        $repository = app(\CodeFin\Repositories\BankRepositoryEloquent::class);
+        $repository->skipPresenter(true);
+        $count = count($this->getData());
+        foreach (range(1,$count) as $id) {
+            $bank = $repository->find($id);
+            $path = Bank::LOGOS_DIR . '/' . $bank->logo;
+            Storage::disk('public')->delete($path);
+            echo "** Imagem do '$bank->name' deletada: " . $bank->logo . "\n";
+            $bank->delete();
+        }
     }
 
     public function getData(){
