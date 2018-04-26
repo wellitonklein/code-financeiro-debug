@@ -72,7 +72,6 @@ class BanksController extends Controller
 //            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
         $data = $request->all();
-        $data['logo'] = md5(time()).'.jpeg';
         $this->repository->create($data);
 
         /*if ($request->wantsJson()) {
@@ -84,16 +83,6 @@ class BanksController extends Controller
         }*/
 
         return redirect()->route('admin.banks.index');
-//        } catch (ValidatorException $e) {
-//            if ($request->wantsJson()) {
-//                return response()->json([
-//                    'error'   => true,
-//                    'message' => $e->getMessageBag()
-//                ]);
-//            }
-//
-//            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-//        }
     }
 
     /**
