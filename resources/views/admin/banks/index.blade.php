@@ -6,7 +6,9 @@
             <div class="col s12 m12 l12">
                 <h4>Listagem de Bancos</h4>
                 <div class="row col s12">
-                    <a href="{{route('admin.banks.create')}}" class="btn waves-effect">Novo</a>
+                    <a href="{{route('admin.banks.create')}}" class="btn waves-effect btn-floating btn-large green">
+                        <i class="material-icons">add</i>
+                    </a>
                 </div>
                 <table class="striped z-depth-5 table-style">
                     <thead>
@@ -39,13 +41,16 @@
                             <td class="center">
                                 <div class="row valign-wrapper">
                                     <div class="col s12">
-                                        <a href="{{route('admin.banks.edit',['bank'=>$bank->id])}}">Editar</a> |
+                                        <a href="{{route('admin.banks.edit',['bank'=>$bank->id])}}" class="btn waves-effect btn-floating orange">
+                                            <i class="material-icons">mode_edit</i>
+                                        </a>
                                         <delete-action action="{{route('admin.banks.destroy',['bank'=>$bank->id])}}"
                                                        action-element="link-delete-{{$bank->id}}"
                                                        csrf-token="{{csrf_token()}}">
                                             <?php $modalId = "modal-delete-$bank->id"?>
-                                            <a id="link-modal-{{$bank->id}}"
-                                               href="#{{$modalId}}">Excluir</a>
+                                            <a id="link-modal-{{$bank->id}}" href="#{{$modalId}}" class="btn waves-effect btn-floating red">
+                                                <i class="material-icons">delete</i>
+                                            </a>
                                             <modal :modal="{{json_encode(['id' => $modalId])}}" style="display: none">
                                                 <div slot="content">
                                                     <h5>Mensagem de Confirmação</h5>
