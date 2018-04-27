@@ -21,6 +21,8 @@ Route::group(['middleware'=>'cors','as' => 'api.'],function (){
         Route::post('/logout','Api\AuthController@logout')
             ->middleware('auth:api')->name('logout');
 
+        Route::resource('/bank_accounts','Api\BankAccountsController',['except' => ['create','edit']]);
+
         Route::get('/hello', function (Request $request) {
             return response()->json(['message'=>'hello']);
         })->middleware('auth:api')->name('hello');
