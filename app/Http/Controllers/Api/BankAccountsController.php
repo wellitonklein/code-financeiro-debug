@@ -32,7 +32,7 @@ class BankAccountsController extends Controller
      */
     public function index()
     {
-        $bankAccounts = $this->repository->all();
+        $bankAccounts = $this->repository->skipPresenter(false)->all();
 
         return $bankAccounts;
     }
@@ -49,6 +49,7 @@ class BankAccountsController extends Controller
     public function store(BankAccountCreateRequest $request)
     {
         $bankAccount = $this->repository->create($request->all());
+
         return response()->json($bankAccount,201);
     }
 
@@ -61,7 +62,7 @@ class BankAccountsController extends Controller
      */
     public function show($id)
     {
-        $bankAccount = $this->repository->find($id);
+        $bankAccount = $this->repository->skipPresenter(false)->find($id);
 
         return response()->json($bankAccount);
     }
