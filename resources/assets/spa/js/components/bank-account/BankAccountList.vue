@@ -34,6 +34,7 @@
                     </tr>
                     </tbody>
                 </table>
+                <pagination :per-page="10" :total-records="55"></pagination>
             </div>
 
             <div class="fixed-action-btn">
@@ -68,10 +69,12 @@
 <script>
     import {BankAccount} from "../../services/resources";
     import ModalComponent from "../../../../_default/components/Modal.vue";
+    import PaginationComponent from "../Pagination.vue";
 
     export default {
         component: {
             'modal': ModalComponent,
+            'pagination' : PaginationComponent
         },
         data(){
             return{
