@@ -24,7 +24,6 @@
                         <td>{{ o.agency }}</td>
                         <td>{{ o.account }}</td>
                         <td>
-                            <!--<a v-link="{ name: 'bank-account.update', params:{id: o.id} }">Editar</a>-->
                             <a v-link="{ name: 'bank-account.update', params:{id: o.id} }" class="btn waves-effect btn-floating orange">
                                 <i class="material-icons">mode_edit</i>
                             </a>
