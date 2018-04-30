@@ -25,3 +25,11 @@ main{
   width: 40px;
   height: 40px;
 }
+
+.background-default{
+  background-color: color('purple','lighten-5');
+}
+
+body{
+  @extend .background-default
+}

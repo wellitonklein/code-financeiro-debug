@@ -20,3 +20,18 @@
 main{
   flex: 1 0 auto;
 }
+
+body{
+  background-color: color('green','lighten-5');
+}
+
+.spinner{
+  @extend .progress;
+  margin: 0;
+}
+
+.spinner-fixed{
+  width: 100%;
+  position: fixed;
+  z-index: 998;
+}

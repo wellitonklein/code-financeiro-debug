@@ -10393,4 +10393,8 @@ main {
   height: 40px;
 }
 
+.background-default, body {
+  background-color: #f3e5f5;
+}
+
 /*# sourceMappingURL=admin.css.map */

@@ -34,8 +34,8 @@
                                     {{config.name}} <i class="material-icons right">arrow_drop_down</i>
                                 </a>
                             </li>
+                        </ul>
                     </div>
-                    </ul>
                 </div>
                 <ul id="nav-mobile" class="side-nav">
                     <li v-for="menu in config.menus">
@@ -45,8 +45,6 @@
             </div>
         </nav>
     </div>
-    <!--</div>-->
-    <!--<router-view></router-view>-->
 </template>
 
 <script type="text/javascript">
