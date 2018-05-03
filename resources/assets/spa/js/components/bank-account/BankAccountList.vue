@@ -10,20 +10,18 @@
                 <table class="bordered striped highlight">
                     <thead>
                     <tr>
-                        <th>#</th>
                         <th>Nome</th>
                         <th>Agência</th>
                         <th>C/C</th>
-                        <th>Ações</th>
+                        <th class="center">Ações</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="(index,o) in bankAccounts">
-                        <td>{{ index+1 }}</td>
+                    <tr v-for="o in bankAccounts">
                         <td>{{ o.name }}</td>
                         <td>{{ o.agency }}</td>
                         <td>{{ o.account }}</td>
-                        <td>
+                        <td class="center">
                             <a v-link="{ name: 'bank-account.update', params:{id: o.id} }" class="btn waves-effect btn-floating orange">
                                 <i class="material-icons">mode_edit</i>
                             </a>
@@ -34,11 +32,14 @@
                     </tr>
                     </tbody>
                 </table>
-                <pagination :per-page="10" :total-records="55"></pagination>
+                <pagination :current-page.sync="pagination.current_page"
+                            :per-page="pagination.per_page"
+                            :total-records="pagination.total">
+                </pagination>
             </div>
 
             <div class="fixed-action-btn">
-                <a class="btn-floating btn-large" href="https://www.freenfe.com.br" >
+                <a class="btn-floating btn-large" v-link="{name: 'bank-account.create'}">
                     <i class="large material-icons">add</i>
                 </a>
             </div>
@@ -66,13 +67,13 @@
 
 </template>
 
-<script>
+<script type="text/javascript">
     import {BankAccount} from "../../services/resources";
     import ModalComponent from "../../../../_default/components/Modal.vue";
-    import PaginationComponent from "../Pagination.vue";
+    import PaginationComponent from "../../../../_default/components/Pagination.vue";
 
     export default {
-        component: {
+        components: {
             'modal': ModalComponent,
             'pagination' : PaginationComponent
         },
@@ -82,13 +83,16 @@
                 bankAccountToDelete: null,
                 modal: {
                     id: 'modal-delete'
+                },
+                pagination: {
+                    current_page: 0,
+                    per_page: 0,
+                    total: 0
                 }
             };
         },
         created() {
-            BankAccount.query().then((response) => {
-                this.bankAccounts = response.data.data;
-            })
+            this.getBankAccounts()
         },
         methods: {
             destroy() {
@@ -101,6 +105,21 @@
             openModalDelete(bankAccount){
                 this.bankAccountToDelete = bankAccount;
                 $('#modal-delete').modal();
+            },
+            getBankAccounts(){
+                BankAccount.query({
+                    page: this.pagination.current_page+1
+                }).then((response) => {
+                    this.bankAccounts = response.data.data
+                    let pagination = response.data.meta.pagination
+                    pagination.current_page--
+                    this.pagination = pagination
+                })
+            }
+        },
+        events: {
+            'pagination::changed'(page) {
+                this.getBankAccounts()
             }
         }
     }

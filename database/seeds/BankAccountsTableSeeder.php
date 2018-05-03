@@ -14,7 +14,7 @@ class BankAccountsTableSeeder extends Seeder
     {
         $repository = app(BankRepository::class);
         $banks = $repository->all();
-        $max = 15;
+        $max = 18;
         $bankAccountId = rand(1,$max);
 
         factory(\CodeFin\Models\BankAccount::class,$max)
