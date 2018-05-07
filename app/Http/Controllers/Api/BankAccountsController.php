@@ -36,7 +36,7 @@ class BankAccountsController extends Controller
     {
 //        $this->repository->pushCriteria(new FindByNameCriteria('Ashleyberg'));
 //        $this->repository->pushCriteria(new FindByLikeAgencyCriteria('8'));
-        $bankAccounts = $this->repository->paginate();
+        $bankAccounts = $this->repository->paginate(7);
 
         return $bankAccounts;
     }

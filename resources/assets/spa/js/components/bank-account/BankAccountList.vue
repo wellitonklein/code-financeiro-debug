@@ -10,14 +10,21 @@
                 <table class="bordered striped highlight">
                     <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th>Agência</th>
-                        <th>C/C</th>
+                        <th v-for="(key, o) in table.headers" :width="o.width">
+                            <a href="#" @click.prevent="sortBy(key)">
+                                {{o.label}}
+                                <i class="material-icons right" v-if="order.key == key">
+                                    {{ order.sort == 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                                </i>
+                            </a>
+                        </th>
+
                         <th class="center">Ações</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="o in bankAccounts">
+                    <tr v-for="(index,o) in bankAccounts">
+                        <td>{{index+1}}</td>
                         <td>{{ o.name }}</td>
                         <td>{{ o.agency }}</td>
                         <td>{{ o.account }}</td>
@@ -47,7 +54,7 @@
         </div>
     </div>
 
-    <modal :modal="modal" style="display: none">
+    <modal :modal="modal">
         <div slot="content" v-if="bankAccountToDelete">
             <h4>Mensagem de Confirmação</h4>
             <p><strong>Deseja excluir esta conta bancária?</strong></p>
@@ -88,6 +95,30 @@
                     current_page: 0,
                     per_page: 0,
                     total: 0
+                },
+                order:{
+                    key: 'name',
+                    sort: 'asc'
+                },
+                table: {
+                    headers: {
+                        id: {
+                            label: '#',
+                            width: '10%'
+                        },
+                        name: {
+                            label: 'Nome',
+                            width: '30%'
+                        },
+                        agency: {
+                            label: 'Agência',
+                            width: '15%'
+                        },
+                        account: {
+                            label: 'C/C',
+                            width: '25%'
+                        },
+                    }
                 }
             };
         },
@@ -99,12 +130,12 @@
                 BankAccount.delete({id: this.bankAccountToDelete.id}).then((response) => {
                     this.bankAccounts.$remove(this.bankAccountToDelete);
                     this.bankAccountToDelete = null;
-                    Materialize.toast('Conta bancária excluída com sucesso!',4000);
+                    Materialize.toast('Conta bancária excluída com sucesso!',5000);
                 });
             },
             openModalDelete(bankAccount){
                 this.bankAccountToDelete = bankAccount;
-                $('#modal-delete').modal();
+                $('#modal-delete').modal('open');
             },
             getBankAccounts(){
                 BankAccount.query({
@@ -115,6 +146,10 @@
                     pagination.current_page--
                     this.pagination = pagination
                 })
+            },
+            sortBy(key){
+                this.order.key = key
+                this.order.sort = this.order.sort == 'desc' ? 'asc' : 'desc'
             }
         },
         events: {
