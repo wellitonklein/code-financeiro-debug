@@ -15,8 +15,9 @@ use CodeFin\Models\BankAccount;
 class BankAccountRepositoryEloquent extends BaseRepository implements BankAccountRepository
 {
     protected $fieldSearchable = [
-        'name',
-        'agency',
+        'name' => 'like',
+        'agency' => 'like',
+        'account' => 'like',
         'bank.name' => 'like'
     ];
     /**

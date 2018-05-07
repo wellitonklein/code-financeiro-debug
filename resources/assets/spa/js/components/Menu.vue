@@ -14,7 +14,7 @@
             <nav>
                 <div class="nav-wrapper container">
                     <div class="col s12">
-                        <a href="#" class="left brand-logo">Contas <i class="material-icons">local_grocery_store</i></a>
+                        <a v-link="{ name: 'bank-account.list'}" class="left brand-logo"> <i class="material-icons">local_grocery_store</i></a>
                         <a href="#" data-activates="nav-mobile" class="button-collapse right">
                             <i class="material-icons">menu</i>
                         </a>
