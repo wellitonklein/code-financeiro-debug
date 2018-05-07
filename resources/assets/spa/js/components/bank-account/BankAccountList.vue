@@ -13,7 +13,7 @@
                         <th v-for="(key, o) in table.headers" :width="o.width">
                             <a href="#" @click.prevent="sortBy(key)">
                                 {{o.label}}
-                                <i class="material-icons right" v-if="order.key == key">
+                                <i class="material-icons left" v-if="order.key == key">
                                     {{ order.sort == 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}
                                 </i>
                             </a>
@@ -139,7 +139,9 @@
             },
             getBankAccounts(){
                 BankAccount.query({
-                    page: this.pagination.current_page+1
+                    page: this.pagination.current_page+1,
+                    orderBy: this.order.key,
+                    sortedBy: this.order.sort
                 }).then((response) => {
                     this.bankAccounts = response.data.data
                     let pagination = response.data.meta.pagination
@@ -150,6 +152,7 @@
             sortBy(key){
                 this.order.key = key
                 this.order.sort = this.order.sort == 'desc' ? 'asc' : 'desc'
+                this.getBankAccounts()
             }
         },
         events: {
