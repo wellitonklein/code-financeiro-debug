@@ -1,6 +1,6 @@
 <template>
-    <div class="card-panel green lighten-3">
-        <span class="green-text text-darken-2">
+    <div class="card-panel green lighten-4">
+        <span class="green-text text-darken-3">
             <slot></slot>
         </span>
     </div>
