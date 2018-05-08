@@ -13,6 +13,7 @@ class BankAccountsTableSeeder extends Seeder
     public function run()
     {
         $repository = app(BankRepository::class);
+        $repository->skipPresenter(true);
         $banks = $repository->all();
         $max = 18;
         $bankAccountId = rand(1,$max);
